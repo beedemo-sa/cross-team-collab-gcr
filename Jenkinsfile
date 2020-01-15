@@ -6,16 +6,6 @@ pipeline {
     eventTrigger jmespathQuery("tag=='gcr.io/core-workshop/ctc-hello-world:latest'")
   }
   stages {
-    stage('Add additional layer') {
-      when {
-        triggeredBy "EventTriggerCause"
-        beforeAgent true
-      }
-      steps {
-        sh "echo 'Hello Again!' > hello-2.txt"
-        sh "echo 'FROM gcr.io/core-workshop/ctc-hello-world\nCOPY hello-2.txt hello-2.txt' > Dockerfile"
-      }
-      }
     stage("Build and push image") {
       when {
           triggeredBy "EventTriggerCause"
