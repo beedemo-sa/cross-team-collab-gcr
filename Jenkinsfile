@@ -3,12 +3,6 @@ pipeline {
     label "img"
   }
   stages {
-    stage("Pre-build activities") {
-      steps {
-        sh "echo 'Hello World!' > hello.txt"
-        sh "echo 'FROM scratch\nCOPY hello.txt hello.txt' > Dockerfile"
-      }
-    }
     stage("Build and push image") {
       steps {
         container('img') {
